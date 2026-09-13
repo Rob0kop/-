@@ -13,6 +13,19 @@
     });
 </script>
 <meta name="robots" content="noindex">
+<script>
+/* GitHub Pages отдаёт этот файл на любой неизвестный путь (например /gallery).
+   Если путь совпадает с одной из SPA-страниц сайта — молча редиректим на
+   главную с этим же путём в URL, а index.html сам откроет нужную страницу.
+   Настоящий 404 показываем только для путей, которых точно нет в сайте. */
+(function(){
+  var ROUTE_PAGES = ['home','history','laws','staff','support','gallery','updates','announcements'];
+  var seg = location.pathname.replace(/^\/+|\/+$/g,'').toLowerCase();
+  if(ROUTE_PAGES.indexOf(seg) !== -1){
+    location.replace('/index.html' + location.search + '#__route=' + seg);
+  }
+})();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Oswald:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
