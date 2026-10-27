@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4e9">
+  <meta name="description" content="РосПил — справедливость, свобода слова и полный аудит действий на сервере ИСР.">
+  <title>РосПил — ИСР</title>
+  <style>
+    :root {
+      --paper: #f7f4e9;
+      --ink: #24231f;
+      --muted: #777367;
+      --red: #b51f27;
+      --gold: #c7a43b;
+      --line: #ded8c6;
+      --white: #fffdf7;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    header { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 850; letter-spacing: -.04em; }
+    .brand img { width: 48px; height: 48px; object-fit: contain; }
+    .brand-name span { color: var(--red); }
+    nav { display: flex; flex-wrap: wrap; gap: 25px; color: var(--muted); font-size: 12px; }
+    nav a:hover, .plain-link:hover { color: var(--red); }
+    .hero { min-height: 590px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 52px; padding-block: 72px; }
+    .eyebrow, .section-label { color: var(--red); text-transform: uppercase; letter-spacing: .16em; font-size: 10px; font-weight: 850; }
+    h1 { max-width: 690px; margin: 22px 0; font-size: clamp(58px, 8.7vw, 106px); line-height: .88; letter-spacing: -.085em; font-weight: 850; }
+    h1 span { color: var(--red); }
+    .lead { max-width: 450px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 46px; padding: 0 18px; background: var(--red); color: white; font-size: 12px; font-weight: 750; transition: transform .2s, background .2s; }
+    .button:hover { background: #8f171e; transform: translateY(-2px); }
+    .plain-link { font-size: 12px; font-weight: 750; }
+    .emblem-panel { position: relative; min-height: 370px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--line); background: var(--white); }
+    .emblem-panel::before { content: ""; position: absolute; width: 300px; height: 300px; border: 1px solid #e7dcb4; border-radius: 50%; }
+    .emblem-panel::after { content: ""; position: absolute; width: 230px; height: 230px; border: 1px solid #e7dcb4; border-radius: 50%; }
+    .emblem-panel img { position: relative; z-index: 1; width: min(78%, 330px); height: auto; image-rendering: auto; }
+    .panel-note { position: absolute; z-index: 2; bottom: 18px; left: 20px; right: 20px; display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    section { padding-block: 78px; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .75fr 1.25fr; gap: 35px; margin-bottom: 38px; }
+    h2 { margin: 0; font-size: clamp(32px, 4.5vw, 52px); line-height: .98; letter-spacing: -.065em; }
+    .section-copy { max-width: 600px; margin: 17px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .values { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .value { padding: 24px 24px 0 0; }
+    .num { color: var(--red); font-size: 11px; font-weight: 850; }
+    h3 { margin: 16px 0 9px; font-size: 20px; letter-spacing: -.04em; }
+    .value p, .done-card p { margin: 0; max-width: 290px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .done-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .done-card { min-height: 170px; padding: 24px; background: var(--white); border: 1px solid var(--line); }
+    .done-card .check { color: var(--red); font-size: 18px; font-weight: 900; }
+    .done-card h3 { margin-top: 16px; }
+    .audit-note { margin-top: 14px; padding: 20px 22px; border-left: 3px solid var(--gold); background: #eee8d7; color: #514c3f; font-size: 13px; line-height: 1.8; }
+    .manifesto { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: end; padding: 48px; background: var(--ink); color: var(--paper); }
+    .manifesto .eyebrow { color: #e6c86d; }
+    .manifesto p { margin: 0; color: #d0cbbc; font-size: 14px; line-height: 1.85; }
+    .join { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    footer { padding-block: 25px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
+    @media (max-width: 700px) {
+      .wrap { width: min(100% - 32px, var(--max)); }
+      header { padding-block: 12px; align-items: flex-start; }
+      nav { gap: 12px; justify-content: flex-end; padding-top: 10px; }
+      nav a { font-size: 11px; }
+      .hero { grid-template-columns: 1fr; padding-block: 54px; gap: 30px; }
+      .emblem-panel { min-height: 300px; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; }
+      .values, .done-grid { grid-template-columns: 1fr; }
+      .value { padding: 22px 0; border-bottom: 1px solid var(--line); }
+      .value p { max-width: 460px; }
+      .manifesto { grid-template-columns: 1fr; padding: 30px; }
+      .join { align-items: flex-start; flex-direction: column; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="#top" aria-label="РосПил — главная">
+      <img src="assets/emblem.png" alt="Эмблема РосПил">
+      <span class="brand-name">РОСПИЛ<span>.</span></span>
+    </a>
+    <nav aria-label="Основная навигация">
+      <a href="#about">О партии</a>
+      <a href="#principles">Принципы</a>
+      <a href="#results">Сделано</a>
+      <a href="#join">Контакты</a>
+    </nav>
+  </header>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Партия · сервер ИСР</div>
+        <h1>ЗА ПРАВДУ.<br>ЗА <span>СВОБОДУ.</span><br>ЗА СПРАВЕДЛИВОСТЬ.</h1>
+        <p class="lead">РосПил выступает за справедливые правила, свободу слова и полный аудит действий власти. Решения должны быть прозрачными, а ответственность — реальной.</p>
+        <div class="actions">
+          <a class="button" href="#results">Что уже сделано <span aria-hidden="true">↘</span></a>
+          <a class="plain-link" href="#principles">Наши принципы ↗</a>
+        </div>
+      </div>
+      <div class="emblem-panel">
+        <img src="assets/emblem.png" alt="Эмблема партии РосПил">
+        <div class="panel-note"><span>РосПил / ИСР</span><span>Справедливость · Свобода · Контроль</span></div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="section-head">
+        <div class="section-label">01 / О партии</div>
+        <div>
+          <h2>Власть должна<br>быть подотчётна.</h2>
+          <p class="section-copy">Мы за систему, в которой граждане могут высказываться свободно, споры рассматриваются через суд, экономика работает по понятным правилам, а действия администрации можно проверить.</p>
+        </div>
+      </div>
+      <div class="manifesto">
+        <div>
+          <div class="eyebrow">Наша позиция</div>
+          <h2 style="margin-top:20px">Никаких<br>решений в тени.</h2>
+        </div>
+        <p>Аудит — инструмент контроля, а не привилегия одного должностного лица. Журнал аудита предназначен для администраторов: он помогает проверять действия и поддерживать прозрачность. Президент не должен быть единственным владельцем такого контроля.</p>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div class="section-head">
+        <div class="section-label">02 / Принципы</div>
+        <div>
+          <h2>Три обязательства.</h2>
+          <p class="section-copy">Это основа нашей работы на ИСР — коротко и без лишних обещаний.</p>
+        </div>
+      </div>
+      <div class="values">
+        <article class="value">
+          <div class="num">01 — СПРАВЕДЛИВОСТЬ</div>
+          <h3>Единые правила</h3>
+          <p>Законы и процедуры должны работать последовательно, а спорные ситуации — получать честное рассмотрение.</p>
+        </article>
+        <article class="value">
+          <div class="num">02 — СВОБОДА СЛОВА</div>
+          <h3>Право говорить</h3>
+          <p>Критика, предложения и открытая дискуссия — часть здоровой политической жизни сервера.</p>
+        </article>
+        <article class="value">
+          <div class="num">03 — ПОЛНЫЙ АУДИТ</div>
+          <h3>Проверяемые действия</h3>
+          <p>Действия должностных лиц должны оставлять проверяемый след, доступный уполномоченным администраторам.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="section-head">
+        <div class="section-label">03 / Результаты</div>
+        <div>
+          <h2>Уже сделано.</h2>
+          <p class="section-copy">Инициативы и изменения, которые были добавлены на сервере ИСР.</p>
+        </div>
+      </div>
+      <div class="done-grid">
+        <article class="done-card">
+          <div class="check">↗</div>
+          <h3>Амнистия</h3>
+          <p>Добавлена амнистия как механизм пересмотра прежних наказаний и предоставления второго шанса.</p>
+        </article>
+        <article class="done-card">
+          <div class="check">↗</div>
+          <h3>Суды</h3>
+          <p>Добавлена судебная система для рассмотрения споров и разрешения конфликтов по процедуре.</p>
+        </article>
+        <article class="done-card">
+          <div class="check">↗</div>
+          <h3>Экономика</h3>
+          <p>Добавлены экономические механики — важная основа для более системной жизни сервера.</p>
+        </article>
+        <article class="done-card">
+          <div class="check">↗</div>
+          <h3>Журнал аудита для администрации</h3>
+          <p>Добавлен журнал аудита для администраторов, а не для единоличного контроля президента.</p>
+        </article>
+      </div>
+      <div class="audit-note"><strong>Принцип аудита:</strong> журнал нужен для контроля и проверки действий администрации. Доступ и порядок использования определяются правилами сервера, а не личными интересами отдельных лиц.</div>
+    </section>
+
+    <section id="join">
+      <div class="join">
+        <div>
+          <div class="section-label" style="margin-bottom:18px">04 / Участие</div>
+          <h2>Справедливость<br>начинается с участия.</h2>
+          <p class="section-copy">Поддерживай открытые обсуждения, предлагай изменения и помогай делать ИСР прозрачнее.</p>
+        </div>
+        <!-- Замените значение href на ссылку Discord-приглашения или канал партии -->
+        <a class="button" href="https://discord.com/" target="_blank" rel="noopener noreferrer">Открыть Discord <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">
+    <span>© РОСПИЛ · ИСР</span>
+    <span>Справедливость. Свобода слова. Полный аудит.</span>
+  </footer>
+</body>
+</html>
